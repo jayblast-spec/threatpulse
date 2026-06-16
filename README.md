@@ -1,37 +1,42 @@
 # ThreatPulse
 
-ThreatPulse is part of ArkNet Digital's Cybersecurity Suite.
+ThreatPulse is an ArkNet Digital cybersecurity product.
 
 ## Promise
 
-translate threat signals into daily decisions, not noisy feeds
+Turn threat noise into a daily defensive action brief.
 
-## Built For
+ThreatPulse is for founders and blue-team leads who need to know what changed, why it matters, and what to do today without drowning in feeds.
 
-blue-team leads, SOC managers, and founders protecting revenue
+## Current v1
 
-## Product Modules
+- Premium defensive cockpit UI
+- Live product-specific intake
+- `POST /api/intelligence`
+- Product-specific scoring and remediation queue
+- Contributor mission lanes
+- Mobile-friendly layout
 
-- Signal clustering
-- Business impact scoring
-- Mitigation shortlist
-- Executive summary
-- Watchlist memory
+## Contributor Missions
 
-## Open Source Direction
+- OTX and URLhaus fusion: Combine free feeds into useful daily defensive signals.
+- MITRE mapping: Map pulse items to tactics and mitigations.
+- Morning SOC email: Send a concise daily action brief.
+- Founder report: Translate threats into business priorities.
 
-This repo is open to contributors because strong ideas move faster when serious builders can inspect, improve, and extend them. The goal is not secrecy. The goal is speed, quality, and contribution.
+## Defensive Scope
 
-## First Workflow
-
-1. Enter real context.
-2. Generate a useful first output.
-3. Review risk, confidence, or next action.
-4. Save the result into product memory in a future paid workspace.
+ThreatPulse should reduce noise and point to defensive action, not become a fear dashboard.
 
 ## Run Locally
 
 ```bash
 npm install
 npm run dev
+```
+
+## Build
+
+```bash
+npm run build
 ```
