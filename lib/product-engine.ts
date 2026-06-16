@@ -1,69 +1,95 @@
 export type IntelligenceInput = { input?: string };
-
 const product = {
   "repo": "ThreatPulse",
-  "suite": "Cybersecurity Suite",
-  "category": "Threat intelligence",
-  "audience": "blue-team leads, SOC managers, and founders protecting revenue",
-  "promise": "translate threat signals into daily decisions, not noisy feeds",
-  "inputLabel": "Asset, industry, or threat concern",
-  "placeholder": "SaaS startup exposed admin panels and credential stuffing risk",
-  "primary": "Generate pulse",
-  "gradient": "from-rose-300 via-orange-300 to-amber-300",
-  "modules": [
-    "Signal clustering",
-    "Business impact scoring",
-    "Mitigation shortlist",
-    "Executive summary",
-    "Watchlist memory"
+  "title": "ThreatPulse",
+  "eyebrow": "ArkNet Digital / Cybersecurity Suite",
+  "theme": "from-rose-300 via-orange-300 to-amber-300",
+  "hero": "Turn threat noise into a daily defensive action brief.",
+  "sub": "ThreatPulse is for founders and blue-team leads who need to know what changed, why it matters, and what to do today without drowning in feeds.",
+  "input": "SaaS startup, public dashboards, credential stuffing, exposed admin routes",
+  "cta": "Generate threat pulse",
+  "scoreLabel": "Priority pulse",
+  "panels": [
+    [
+      "Signal clustering",
+      "Group CVEs, abuse campaigns, and industry signals into themes."
+    ],
+    [
+      "Business impact",
+      "Translate technical issues into operational risk."
+    ],
+    [
+      "Action brief",
+      "Recommend the next defensive move with owner and urgency."
+    ],
+    [
+      "Watch memory",
+      "Track recurring themes and what was already handled."
+    ]
   ],
-  "outputs": [
-    "Top threat theme",
-    "Business impact",
-    "Next defensive action",
-    "Watchlist update"
+  "rows": [
+    [
+      "Credential stuffing",
+      "Identity",
+      "High",
+      "Review MFA coverage, rate limits, and login anomaly monitoring."
+    ],
+    [
+      "Public admin panels",
+      "Exposure",
+      "Critical",
+      "Find, restrict, and monitor admin paths."
+    ],
+    [
+      "Dependency CVE",
+      "Supply chain",
+      "Medium",
+      "Patch reachable services first."
+    ],
+    [
+      "Phishing campaign",
+      "Human risk",
+      "High",
+      "Push warning copy and safe-link checks."
+    ]
   ],
-  "next": [
-    "OTX/URLhaus feed fusion",
-    "industry watchlists",
-    "automated morning SOC brief",
-    "MITRE ATT&CK mapping"
-  ]
+  "missions": [
+    [
+      "OTX and URLhaus fusion",
+      "Combine free feeds into useful daily defensive signals."
+    ],
+    [
+      "MITRE mapping",
+      "Map pulse items to tactics and mitigations."
+    ],
+    [
+      "Morning SOC email",
+      "Send a concise daily action brief."
+    ],
+    [
+      "Founder report",
+      "Translate threats into business priorities."
+    ]
+  ],
+  "apiExtra": "ThreatPulse should reduce noise and point to defensive action, not become a fear dashboard."
 } as const;
-
-function score(text: string) {
-  const length = text.trim().length;
-  const diversity = new Set(text.toLowerCase().replace(/[^a-z0-9 ]/g, '').split(/\s+/).filter(Boolean)).size;
-  return Math.min(97, 48 + Math.floor(length / 7) + Math.min(28, diversity));
-}
-
+function scoreFor(subject: string) { let score = 58 + Math.min(28, Math.floor(subject.length / 5)); if (/admin|rdp|database|credential|prod|public|critical|cve|phishing/i.test(subject)) score += 9; return Math.min(98, score); }
+function severity(score: number) { return score >= 88 ? 'critical' : score >= 74 ? 'high' : score >= 61 ? 'medium' : 'low'; }
 export function generateIntelligence({ input = '' }: IntelligenceInput) {
-  const subject = input.trim() || product.placeholder;
-  const confidence = score(subject);
-  const urgency = confidence > 82 ? 'high' : confidence > 66 ? 'medium' : 'starter';
+  const subject = input.trim() || product.input;
+  const score = scoreFor(subject);
   return {
-    product: product.repo,
-    category: product.category,
+    product: product.title,
+    brand: 'ArkNet Digital',
+    category: product.hero,
     subject,
-    confidence,
-    urgency,
-    executive_summary: product.promise,
-    immediate_outputs: product.outputs.map((output, index) => ({
-      title: output,
-      detail: output + ' for: ' + subject,
-      priority: index === 0 ? 'primary' : index === 1 ? 'supporting' : 'next'
-    })),
-    automation_plan: product.modules.map((module, index) => ({
-      stage: index + 1,
-      module,
-      value: 'Automate ' + module.toLowerCase() + ' so ' + product.audience + ' can move faster with less manual work.'
-    })),
-    future_addons: product.next.map((addon, index) => ({
-      name: addon,
-      horizon: index < 2 ? 'v2' : 'v3',
-      contributor_lane: index % 2 === 0 ? 'integration' : 'product intelligence'
-    })),
-    contributor_brief: 'Improve ' + product.repo + ' by making ' + product.category.toLowerCase() + ' easier for ' + product.audience + '.',
+    score,
+    severity: severity(score),
+    executive_summary: product.sub,
+    exposure_map: product.panels.map(([label, value]) => ({ label, value, status: score >= 74 ? 'priority' : 'review' })),
+    remediation_queue: product.rows.slice(0, 3).map(([asset, type, risk, note]) => ({ action: asset + ' - ' + type, owner: risk === 'Critical' ? 'Security lead' : 'Blue Team', impact: note })),
+    contributor_lanes: product.missions.map(([lane, mission]) => ({ lane, mission })),
+    defensive_scope: product.apiExtra,
     generated_at: new Date().toISOString()
   };
 }
