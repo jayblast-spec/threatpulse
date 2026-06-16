@@ -1,6 +1,6 @@
 # ThreatPulse
 
-ThreatPulse is part of Joy Ogunleye's Cybersecurity Suite.
+ThreatPulse is part of ArkNet Digital's Cybersecurity Suite.
 
 ## Promise
 
