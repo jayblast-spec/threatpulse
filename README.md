@@ -60,4 +60,4 @@ Optional: `NVD_API_KEY` for higher rate limits.
 
 ## 📄 License
 
-MIT © [ArkNet.digital](https://arknet.digital)
+MIT © [ArkNet.digital](https://www.arknet.digital/vault.html)
