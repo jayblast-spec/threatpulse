@@ -1,63 +1,55 @@
 <div align="center">
 
-# ⚡ ThreatPulse
+# ThreatPulse
 
-**Live vulnerability feed and CVE lookup — stay ahead of threats without a security operations budget.**
+### Threat Intelligence Without the Noise
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit-6366f1?style=for-the-badge)](https://threatpulse-six.vercel.app)
-[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
-[![MIT License](https://img.shields.io/badge/License-MIT-34d399?style=for-the-badge)](LICENSE)
+ThreatPulse translates live vulnerability data into decisions a small team can actually act on: a live CVE feed and a direct CVE lookup, without the alert fatigue of a full SOC feed.
+
+<p>
+  <a href="https://threatpulse-six.vercel.app"><img alt="Live Demo" src="https://img.shields.io/badge/Live-Demo-1D4ED8?style=for-the-badge&logo=vercel&logoColor=white"></a>
+  <a href="https://github.com/jayblast-spec/threatpulse"><img alt="GitHub Repo" src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white"></a>
+</p>
+
+<p>
+  <img alt="Next.js" src="https://img.shields.io/badge/Next.js-App%20Router-000000?style=flat-square&logo=next.js&logoColor=white">
+  <img alt="React" src="https://img.shields.io/badge/React-19-1D4ED8?style=flat-square&logo=react&logoColor=white">
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-Strict-3178C6?style=flat-square&logo=typescript&logoColor=white">
+  <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind%20CSS-4-38BDF8?style=flat-square&logo=tailwindcss&logoColor=white">
+  <img alt="Vercel" src="https://img.shields.io/badge/Vercel-Deployment-000000?style=flat-square&logo=vercel&logoColor=white">
+</p>
+
+<p>
+  <img alt="Animated ThreatPulse headline" src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=18&duration=2600&pause=650&color=1D4ED8&center=true&vCenter=true&width=760&lines=Live+CVE+feed%2C+no+SOC+budget+required;Search+any+CVE+%E2%86%92+full+detail%2C+CVSS%2C+patch+status;Plain-English+severity%2C+not+raw+scores;Zero+signup%2C+open+and+search+immediately">
+</p>
 
 </div>
 
----
+## What It Does
 
-## ✨ Features
+ThreatPulse surfaces newly published vulnerabilities as a live feed and lets a user search any CVE ID directly to see its severity (CVSS), affected products, and patch/fix status — without needing a security operations budget or an enterprise threat-intel subscription.
 
-- 🔴 **Live CVE feed** — latest vulnerabilities from NVD and CISA KEV as they drop
-- 🔍 **CVE lookup** — search any CVE ID and get full details, CVSS score, and affected versions
-- 📊 **CVSS severity visualization** — Critical / High / Medium / Low broken down visually
-- 🏷️ **Vendor and product filtering** — watch only the technologies in your stack
-- 📋 **Patch status tracking** — see if a fix is available and what version closes the gap
-- 🔔 **Plain-English summaries** — what it is, what it does, how dangerous it really is
-- ⚡ **Zero signup** — open and search immediately
+## How It Works
 
----
+- Next.js App Router front end (`app/page.tsx`) renders the feed and lookup UI.
+- `app/api/cve-feed/route.ts` serves the live vulnerability feed; `app/api/cve-lookup/route.ts` handles direct CVE ID lookups; `app/api/intelligence/route.ts` adds a summarization/analysis layer on top of raw CVE data.
+- Styling is Tailwind CSS 4, with no account system required to browse or search.
 
-## 🚀 Quick Start
+## Live
 
-```bash
-git clone https://github.com/jayblast-spec/threatpulse.git
-cd threatpulse
-npm install
-npm run dev
-```
+Production: **https://threatpulse-six.vercel.app**
 
-Open [http://localhost:3000](http://localhost:3000)
-
----
-
-## 🛠 Stack
+## Tech Stack
 
 | Layer | Technology |
-|-------|-----------|
-| Framework | Next.js 14 (App Router) |
+|---|---|
+| Framework | Next.js (App Router) |
+| UI Library | React 19 |
 | Language | TypeScript |
-| Data | NVD API / CISA KEV |
-| Styling | Tailwind CSS |
+| Styling | Tailwind CSS 4 |
+| Server Logic | Next.js API routes (`/api/cve-feed`, `/api/cve-lookup`, `/api/intelligence`) |
 | Deployment | Vercel |
 
----
-
-## 📦 Deploy Your Own
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/jayblast-spec/threatpulse)
-
-Optional: `NVD_API_KEY` for higher rate limits.
-
----
-
-## 📄 License
-
-MIT © [ArkNet.digital](https://www.arknet.digital/vault.html)
+<p align="center">
+  <img alt="ArkNet Digital" src="https://capsule-render.vercel.app/api?type=rect&height=70&color=0:1D4ED8,55:0B1E3D,100:020617&text=ArkNet%20Digital%20%7C%20Contact%3A%20michael%40arknet.digital&fontColor=FAFAFA&fontSize=16&fontAlign=50&animation=fadeIn">
+</p>
