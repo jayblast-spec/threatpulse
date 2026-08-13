@@ -1,9 +1,14 @@
 const TOOLS = [
-  { name: "Exposure Watch", description: "Email & password breach checks", live: true, url: "https://exposure-watch.vercel.app" },
+  { name: "Exposure Watch", description: "Email & password breach checks", live: false, url: "" },
   { name: "PortGuard", description: "Exposed port & device scanner", live: true, url: "https://portguard-six.vercel.app" },
   { name: "SafeLink", description: "Link & file safety checker", live: true, url: "https://safelink-wheat.vercel.app" },
   { name: "SubnetPilot", description: "Subnet & CIDR calculator", live: true, url: "https://subnetpilot.vercel.app" },
-  { name: "ThreatPulse", description: "Latest vulnerability feed", live: true, url: "https://threatpulse-six.vercel.app" },
+  { name: "BriefOS", description: "Daily executive brief generator", live: true, url: "https://briefos-silk.vercel.app" },
+  { name: "PostCraft", description: "Social post drafting assistant", live: true, url: "https://postcraft-one.vercel.app" },
+  { name: "InvoiceKit", description: "Invoice generation and tracking", live: true, url: "https://invoicekit-pi.vercel.app" },
+  { name: "MeetingMind", description: "Meeting notes and action items", live: true, url: "https://meetingmind-pied-one.vercel.app" },
+  { name: "ContractLens", description: "Contract review and risk scan", live: true, url: "https://contractlens-rho.vercel.app" },
+  { name: "DayForge", description: "Daily planning and focus tool", live: true, url: "https://dayforge-psi.vercel.app" },
 ];
 
 export default function CrossPromoFooter() {
