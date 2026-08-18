@@ -32,8 +32,18 @@ ThreatPulse surfaces newly published vulnerabilities as a live feed and lets a u
 ## How It Works
 
 - Next.js App Router front end (`app/page.tsx`) renders the feed and lookup UI.
-- `app/api/cve-feed/route.ts` serves the live vulnerability feed; `app/api/cve-lookup/route.ts` handles direct CVE ID lookups; `app/api/intelligence/route.ts` adds a summarization/analysis layer on top of raw CVE data.
+- `app/api/cve-feed/route.ts` queries NIST's real NVD API directly (`services.nvd.nist.gov`) for CVEs modified in the last 7 days; `app/api/cve-lookup/route.ts` handles direct CVE ID lookups against the same source.
 - Styling is Tailwind CSS 4, with no account system required to browse or search.
+
+## Engineering Notes
+
+**The real problem:** the NVD's own web UI is slow to scan and not built for a quick "what changed this week" check — most people either don't check CVE feeds regularly or rely on a mailing list digest that's already a day stale.
+
+**The approach:** `cve-feed` hits the live NVD REST API with a 7-day `lastModStartDate`/`lastModEndDate` window every request — there's no local cache or database, so the feed is always exactly as current as NVD's own data, not a snapshot that drifts out of sync.
+
+**One real number:** each request pulls up to 20 results (`resultsPerPage: "20"`) per page from the real NVD dataset, with CVSS v3.1/v3.0/v2 base scores read directly from NVD's own metrics, not recomputed locally.
+
+**Not handled yet:** the homepage "intelligence" panel is a decorative heuristic disconnected from the real feed and lookup routes — don't read it as a threat-summarization layer.
 
 ## Live
 
