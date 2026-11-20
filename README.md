@@ -7,7 +7,6 @@
 ThreatPulse translates live vulnerability data into decisions a small team can actually act on: a live CVE feed and a direct CVE lookup, without the alert fatigue of a full SOC feed.
 
 <p>
-  <a href="https://threatpulse-six.vercel.app"><img alt="Live Demo" src="https://img.shields.io/badge/Live-Demo-1D4ED8?style=for-the-badge&logo=vercel&logoColor=white"></a>
   <a href="https://github.com/jayblast-spec/threatpulse"><img alt="GitHub Repo" src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white"></a>
 </p>
 
@@ -47,7 +46,7 @@ ThreatPulse surfaces newly published vulnerabilities as a live feed and lets a u
 
 ## Live
 
-Production: **https://threatpulse-six.vercel.app**
+Production: *(demo temporarily offline)*
 
 ## Tech Stack
 
